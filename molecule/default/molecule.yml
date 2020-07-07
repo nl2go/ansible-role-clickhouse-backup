@@ -9,7 +9,7 @@ platforms:
     server_type: cx11
     image: ${MOLECULE_PLATFORM}
     groups:
-      - clickhouse-backup
+      - clickhouse_backup
 provisioner:
   name: ansible
   config_options:
@@ -17,7 +17,7 @@ provisioner:
       interpreter_python: auto_silent
   inventory:
     group_vars:
-      clickhouse-backup:
+      clickhouse_backup:
         clickhouse_backup_version: 0.5.2
   lint: |
     set -e

@@ -2,23 +2,33 @@
 - name: Check that clickhouse-backup is installed
   stat:
     path: /usr/bin/clickhouse-backup
-  register: stat_log_result
-  failed_when: not stat_log_result.stat.exists
+  register: stat_binary_result
+  failed_when: not stat_binary_result.stat.exists
+
 - name: Print version of clickhouse-backup
   command: /usr/bin/clickhouse-backup -v
   register: version_result
   run_once: yes
+
 - name: Verify version command return code
   assert:
     that:
       - version_result.rc == 0
+
 - name: Verify clickhouse_backup_version is set
   assert:
     that:
       - clickhouse_backup_version | length > 0
+
     success_msg: "clickhouse_backup_version is set to {{ clickhouse_backup_version }}"
 - name: Verify topic creation output
   assert:
     that:
       - "'{{ clickhouse_backup_version }}' in version_result.stdout"
     success_msg: "{{ clickhouse_backup_version }} is in version result"
+
+- name: Check that clickhouse-backup config is created
+  stat:
+    path: /etc/clickhouse-backup/config.yml
+  register: stat_config_result
+  failed_when: not stat_config_result.stat.exists
