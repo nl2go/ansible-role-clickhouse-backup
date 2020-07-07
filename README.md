@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.com/nl2go/ansible-role-clickhouse-backup.svg?branch=master)](https://travis-ci.com/nl2go/ansible-role-clickhouse-backup)
-[![Ansible Galaxy](https://img.shields.io/badge/role-nl2go.clickhouse-backup-blue.svg)](https://galaxy.ansible.com/nl2go/clickhouse-backup/)
+[![Ansible Galaxy](https://img.shields.io/badge/role-nl2go.clickhouse_backup-blue.svg)](https://galaxy.ansible.com/nl2go/clickhouse_backup/)
+[![Ansible Galaxy Quality Score](https://img.shields.io/ansible/quality/49618)](https://galaxy.ansible.com/nl2go/clickhouse_backup/)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/nl2go/ansible-role-clickhouse-backup)](https://github.com/nl2go/ansible-role-clickhouse-backup/releases)
+[![Ansible Galaxy Downloads](https://img.shields.io/ansible/role/d/49618.svg?color=blue)](https://galaxy.ansible.com/nl2go/clickhouse_backup/)
 
 # Ansible Role: Clickhouse backup
 

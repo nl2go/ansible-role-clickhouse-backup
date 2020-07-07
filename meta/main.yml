@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: nl2go
-  role_name: clickhouse-backup
+  role_name: clickhouse_backup
   description: An Ansible Role that manages installation and configuration of the Clickhouse backup tool clickhouse-backup
   company: Newsletter2Go GmbH
   issue_tracker_url: https://github.com/nl2go/ansible-role-clickhouse-backup/issues
