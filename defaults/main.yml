@@ -1,3 +1,66 @@
 ---
 # clickhouse backup tool version to install
 clickhouse_backup_version: 0.5.2
+# clickhouse-backup config file location
+clickhouse_backup_config_file: /etc/clickhouse-backup/config.yml
+
+####################################
+# General clickhouse-backup settings
+####################################
+clickhouse_backup_general_remote_storage: s3
+clickhouse_backup_general_disable_progress_bar: false
+clickhouse_backup_general_backups_to_keep_local: 0
+clickhouse_backup_general_backups_to_keep_remote: 0
+
+###############################################
+# Clickhouse related clickhouse-backup settings
+###############################################
+clickhouse_backup_clickhouse_username: default
+clickhouse_backup_clickhouse_password: ""
+clickhouse_backup_clickhouse_host: localhost
+clickhouse_backup_clickhouse_port: 9000
+clickhouse_backup_clickhouse_data_path: ""
+clickhouse_backup_clickhouse_skip_tables:
+  - system.*
+clickhouse_backup_clickhouse_timeout: 5m
+clickhouse_backup_clickhouse_freeze_by_part: false
+
+################################################################
+# clickhouse-backup settings related to Amazon S3 remote storage
+################################################################
+clickhouse_backup_s3_access_key: ""
+clickhouse_backup_s3_secret_key: ""
+clickhouse_backup_s3_bucket: ""
+clickhouse_backup_s3_endpoint: ""
+clickhouse_backup_s3_region: us-east-1
+clickhouse_backup_s3_acl: private
+clickhouse_backup_s3_force_path_style: false
+clickhouse_backup_s3_path: ""
+clickhouse_backup_s3_disable_ssl: false
+clickhouse_backup_s3_part_size: 104857600
+clickhouse_backup_s3_compression_level: 1
+clickhouse_backup_s3_compression_format: gzip
+clickhouse_backup_s3_sse: ""
+clickhouse_backup_s3_disable_cert_verification: false
+
+#######################################################################
+# clickhouse-backup settings related to Google Cloud GCS remote storage
+#######################################################################
+clickhouse_backup_gcs_credentials_file: ""
+clickhouse_backup_gcs_credentials_json: ""
+clickhouse_backup_gcs_bucket: ""
+clickhouse_backup_gcs_path: ""
+clickhouse_backup_gcs_compression_level: 1
+clickhouse_backup_gcs_compression_format: gzip
+
+##################################################################
+# clickhouse-backup settings related to Alibaba COS remote storage
+##################################################################
+clickhouse_backup_cos_url: ""
+clickhouse_backup_cos_timeout: 2m
+clickhouse_backup_cos_secret_id: ""
+clickhouse_backup_cos_secret_key: ""
+clickhouse_backup_cos_path: ""
+clickhouse_backup_cos_compression_format: gzip
+clickhouse_backup_cos_compression_level: 1
+clickhouse_backup_cos_debug: false

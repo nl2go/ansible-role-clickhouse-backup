@@ -1,0 +1,8 @@
+---
+- name: Create clickhouse-backup configuration file
+  template:
+    src: config.yml.j2
+    dest: "{{ clickhouse_backup_config_file }}"
+    owner: root
+    group: root
+    mode: '0664'
