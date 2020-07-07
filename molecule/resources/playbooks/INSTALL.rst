@@ -1,11 +1,12 @@
-*******
-Docker driver installation guide
-*******
+***************************************
+Hetzner Cloud driver installation guide
+***************************************
 
 Requirements
 ============
 
-* Docker Engine
+* Ansible >= 2.8
+* ``HCLOUD_TOKEN`` exposed in your environment
 
 Install
 =======
@@ -19,4 +20,4 @@ widely recommended `'--user' flag`_ when invoking ``pip``.
 
 .. code-block:: bash
 
-    $ pip install 'molecule[docker]'
+    $ pip install 'molecule[hetznercloud]'

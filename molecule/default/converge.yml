@@ -1,5 +1,5 @@
 ---
 - name: Converge
-  hosts: all
+  hosts: clickhouse-backup
   roles:
     - role: ansible-role-clickhouse-backup

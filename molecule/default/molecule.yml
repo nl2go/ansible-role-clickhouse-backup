@@ -1,18 +1,35 @@
 ---
-dependency:
-  name: galaxy
 driver:
-  name: docker
-lint:
-  name: yamllint
+  name: hetznercloud
+lint: |
+  set -e
+  yamllint .
 platforms:
-  - name: instance
-    image: debian:10
+  - name: ${MOLECULE_TEST_SCOPE:-default}-clickhouse-backup
+    server_type: cx11
+    image: ${MOLECULE_PLATFORM}
+    groups:
+      - clickhouse-backup
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+  inventory:
+    group_vars:
+      clickhouse-backup:
+        clickhouse_backup_version: 0.5.2
+  lint: |
+    set -e
+    ansible-lint
+  playbooks:
+    create: ../resources/playbooks/create.yml
+    destroy: ../resources/playbooks/destroy.yml
+    verify: verify/main.yml
 verifier:
-  name: testinfra
-  lint:
-    name: flake8
+  name: ansible
+  lint: |
+    set -e
+    ansible-lint
+dependency:
+  name: galaxy
