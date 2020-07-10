@@ -1,5 +1,6 @@
 ---
 - name: Verify clickhouse-backup installation
-  hosts: clickhouse_backup
+  hosts: clickhouse_data
   tasks:
     - include_tasks: base.yml
+    - include_tasks: backup.yml

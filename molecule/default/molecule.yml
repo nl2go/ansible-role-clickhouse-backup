@@ -5,11 +5,18 @@ lint: |
   set -e
   yamllint .
 platforms:
-  - name: ${MOLECULE_TEST_SCOPE:-default}-clickhouse-backup
+  - name: ${MOLECULE_TEST_SCOPE:-default}-clickhouse
     server_type: cx11
     image: ${MOLECULE_PLATFORM}
     groups:
-      - clickhouse_backup
+      - clickhouse
+      - clickhouse_data
+  - name: ${MOLECULE_TEST_SCOPE:-default}-clickhouse-restore
+    server_type: cx11
+    image: ${MOLECULE_PLATFORM}
+    groups:
+      - clickhouse
+      - clickhouse_restore
 provisioner:
   name: ansible
   config_options:
@@ -17,7 +24,7 @@ provisioner:
       interpreter_python: auto_silent
   inventory:
     group_vars:
-      clickhouse_backup:
+      clickhouse:
         clickhouse_backup_version: 0.5.2
   lint: |
     set -e
@@ -33,3 +40,5 @@ verifier:
     ansible-lint
 dependency:
   name: galaxy
+  options:
+    role-file: molecule/resources/requirements.yml

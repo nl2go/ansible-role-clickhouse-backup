@@ -1,0 +1,30 @@
+- name: Install clickhouse on test host
+  hosts: clickhouse
+  roles:
+    - nl2go.clickhouse
+  vars:
+    clickhouse_listen_host: "{{ ansible_default_ipv4.address }}"
+
+- name: Install example dataset with prepared partitions on clickhouse host
+  hosts: clickhouse_data
+  tasks:
+    # See https://clickhouse.tech/docs/en/getting-started/example-datasets/metrica/
+    - name: Download and unarchive example dataset with prepared partitions
+      unarchive:
+        src: https://clickhouse-datasets.s3.yandex.net/hits/partitions/hits_v1.tar
+        dest: /var/lib/clickhouse
+        remote_src: yes
+        creates: /var/lib/clickhouse/data/datasets/hits_v1
+
+    - name: Recursively change ownership of ClickHouse data directory
+      file:
+        path: /var/lib/clickhouse
+        state: directory
+        recurse: yes
+        owner: clickhouse
+        group: clickhouse
+
+    - name: Ensure ClickHouse server is restarted
+      systemd:
+        name: clickhouse-server
+        state: restarted

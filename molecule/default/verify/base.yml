@@ -19,8 +19,8 @@
   assert:
     that:
       - clickhouse_backup_version | length > 0
-
     success_msg: "clickhouse_backup_version is set to {{ clickhouse_backup_version }}"
+
 - name: Verify topic creation output
   assert:
     that:
@@ -32,3 +32,12 @@
     path: /etc/clickhouse-backup/config.yml
   register: stat_config_result
   failed_when: not stat_config_result.stat.exists
+
+- name: Check example dataset
+  shell: "clickhouse-client -h {{ ansible_default_ipv4.address }} --query 'SELECT COUNT(*) FROM datasets.hits_v1'"
+  register: dataset_out
+
+- name: Verify number of records in example dataset
+  assert:
+    that:
+      - dataset_out.stdout | int > 8000000
