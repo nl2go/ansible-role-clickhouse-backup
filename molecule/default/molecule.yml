@@ -25,7 +25,14 @@ provisioner:
   inventory:
     group_vars:
       clickhouse:
+        clickhouse_kafka_client_users:
+          - username: guest
+            password: guest
         clickhouse_backup_version: 0.5.2
+        clickhouse_backup_general_remote_storage: gcs
+        clickhouse_backup_gcs_credentials_file: /etc/clickhouse-backup-gcs-credentials.json
+        clickhouse_backup_gcs_bucket: sib-clickhouse-backup-ci
+        clickhouse_backup_gcs_path: "${MOLECULE_TEST_SCOPE:-default}"
   lint: |
     set -e
     ansible-lint
