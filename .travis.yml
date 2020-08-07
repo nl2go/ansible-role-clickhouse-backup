@@ -19,7 +19,7 @@ before_script:
   - docker-compose up -d
 
 script:
-  - openssl enc -base64 -aes-256-cbc -d -in molecule/resources/clickhouse-backup-gcs-credentials.json.enc -out molecule/resources/clickhouse-backup-gcs-credentials.json -k ${CI_FILE_SECRET} || travis_terminate 1;
+  - openssl enc -aes-256-cbc -d -in molecule/resources/clickhouse-backup-gcs-credentials.json.enc -out molecule/resources/clickhouse-backup-gcs-credentials.json -k ${CI_FILE_SECRET} || travis_terminate 1
   - docker-compose exec -e HCLOUD_TOKEN="$HCLOUD_TOKEN" -e MOLECULE_TEST_SCOPE="$MOLECULE_TEST_SCOPE" -e MOLECULE_PLATFORM="$MOLECULE_PLATFORM" molecule molecule test --all
 
 after_script:
