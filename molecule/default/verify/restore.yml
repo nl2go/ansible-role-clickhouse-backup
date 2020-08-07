@@ -13,4 +13,3 @@
   assert:
     that:
       - backup_restore.rc == 0
-
