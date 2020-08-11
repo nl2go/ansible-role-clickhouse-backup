@@ -19,9 +19,9 @@
   assert:
     that:
       - clickhouse_backup_version | length > 0
-
     success_msg: "clickhouse_backup_version is set to {{ clickhouse_backup_version }}"
-- name: Verify topic creation output
+
+- name: Verify clickhouse-backup version output
   assert:
     that:
       - "'{{ clickhouse_backup_version }}' in version_result.stdout"

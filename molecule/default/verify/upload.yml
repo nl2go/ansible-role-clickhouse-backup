@@ -1,0 +1,12 @@
+---
+- set_fact:
+    backup_name: "molecule_backup_{{ lookup('pipe','date -u +%Y-%m-%d') }}"
+
+- name: Upload backup
+  shell: "clickhouse-backup upload {{ backup_name }}"
+  register: backup_upload
+
+- name: Verify backup upload return code
+  assert:
+    that:
+      - backup_upload.rc == 0

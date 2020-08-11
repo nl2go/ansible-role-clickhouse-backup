@@ -1,0 +1,35 @@
+---
+- set_fact:
+    backup_name: "molecule_backup_{{ lookup('pipe','date -u +%Y-%m-%d') }}"
+
+- name: Create new backup
+  shell: "clickhouse-backup create {{ backup_name }}"
+  register: backup_out
+
+- name: Verify backup creation output
+  assert:
+    that:
+      - "'{{ backup_name }}' in backup_out.stdout"
+    success_msg: "Backup name {{ backup_name }} is in backup output"
+
+- name: Check that backup metadata exists
+  stat:
+    path: /var/lib/clickhouse/backup/{{ backup_name }}/metadata/datasets/visits_v1.sql
+  register: backup_metadata_result
+  failed_when: not backup_metadata_result.stat.exists
+
+- name: Check that backup shadow directory exists
+  stat:
+    path: /var/lib/clickhouse/backup/{{ backup_name }}/shadow/datasets/visits_v1
+  register: backup_shadow_result
+  failed_when: not backup_shadow_result.stat.exists
+
+- name: Check local backup list
+  shell: "clickhouse-backup list local"
+  register: local_backup_list
+
+- name: Verify local backup list output
+  assert:
+    that:
+      - "'{{ backup_name }}' in local_backup_list.stdout"
+    success_msg: "Backup name {{ backup_name }} is in local backup list"

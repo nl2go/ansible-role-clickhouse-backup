@@ -1,5 +1,22 @@
 ---
-- name: Verify clickhouse-backup installation
-  hosts: clickhouse_backup
+- name: Verify basic clickhouse-backup installation
+  hosts: clickhouse
   tasks:
     - include_tasks: base.yml
+
+- name: Verify dataset and backup procedure on origin host
+  hosts: clickhouse_data
+  tasks:
+    - include_tasks: dataset.yml
+    - include_tasks: backup.yml
+
+- name: Verify backup upload
+  hosts: clickhouse_data
+  tasks:
+    - include_tasks: upload.yml
+
+- name: Verify backup restore procedure and dataset on target host
+  hosts: clickhouse_restore
+  tasks:
+    - include_tasks: restore.yml
+    - include_tasks: dataset.yml

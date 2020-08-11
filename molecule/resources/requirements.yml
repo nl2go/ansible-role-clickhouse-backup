@@ -1,0 +1,3 @@
+---
+- src: nl2go.clickhouse
+  version: master

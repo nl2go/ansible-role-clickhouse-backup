@@ -1,5 +1,7 @@
 ---
 - name: Converge
-  hosts: clickhouse_backup
+  hosts: clickhouse
   roles:
     - role: ansible-role-clickhouse-backup
+  vars:
+    clickhouse_backup_clickhouse_host: "{{ ansible_default_ipv4.address }}"

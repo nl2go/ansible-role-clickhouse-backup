@@ -46,8 +46,8 @@ clickhouse_backup_s3_disable_cert_verification: false
 #######################################################################
 # clickhouse-backup settings related to Google Cloud GCS remote storage
 #######################################################################
-clickhouse_backup_gcs_credentials_file: ""
-clickhouse_backup_gcs_credentials_json: ""
+clickhouse_backup_gcs_credentials_file: "" # either clickhouse_backup_gcs_credentials_file or clickhouse_backup_gcs_credentials_json has to be set
+clickhouse_backup_gcs_credentials_json: "" # either clickhouse_backup_gcs_credentials_file or clickhouse_backup_gcs_credentials_json has to be set
 clickhouse_backup_gcs_bucket: ""
 clickhouse_backup_gcs_path: ""
 clickhouse_backup_gcs_compression_level: 1
