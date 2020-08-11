@@ -1,2 +1,3 @@
 .vscode/settings.json
 molecule/resources/clickhouse-backup-gcs-credentials.json
+/.idea/

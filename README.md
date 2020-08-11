@@ -4,9 +4,9 @@
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/nl2go/ansible-role-clickhouse-backup)](https://github.com/nl2go/ansible-role-clickhouse-backup/releases)
 [![Ansible Galaxy Downloads](https://img.shields.io/ansible/role/d/49618.svg?color=blue)](https://galaxy.ansible.com/nl2go/clickhouse_backup/)
 
-# Ansible Role: Clickhouse backup
+# Ansible Role: ClickHouse Backup
 
-An Ansible Role that manages installation and configuration of the [Clickhouse backup tool](https://github.com/AlexAkulov/clickhouse-backup).
+An Ansible Role that manages installation and configuration of the [ClickHouse backup tool](https://github.com/AlexAkulov/clickhouse-backup).
 
 ## Role Variables
 
