@@ -31,7 +31,7 @@ Provide Hetzner Cloud token:
 
     export HCLOUD_TOKEN=123abc456efg
 
-Provider or decrypt GCS credentials file:
+Provide custom or decrypt existing GCS credentials file:
 
     export CI_FILE_SECRET=123
     openssl aes-256-cbc -d \
