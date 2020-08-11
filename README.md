@@ -27,6 +27,19 @@ None.
 Use [docker-molecule](https://github.com/nl2go/docker-molecule) following the instructions to run [Molecule](https://molecule.readthedocs.io/en/stable/)
 or install [Molecule](https://molecule.readthedocs.io/en/stable/) locally (not recommended, version conflicts might appear).
 
+Provide Hetzner Cloud token:
+
+    export HCLOUD_TOKEN=123abc456efg
+
+Provider or decrypt GCS credentials file:
+
+    export CI_FILE_SECRET=123
+    openssl aes-256-cbc -d \
+        -in molecule/resources/clickhouse-backup-gcs-credentials.json.enc \
+        -out molecule/resources/clickhouse-backup-gcs-credentials.json \
+        -md sha256 \
+        -k ${CI_FILE_SECRET}
+
 Use following to run tests:
 
     molecule test --all
