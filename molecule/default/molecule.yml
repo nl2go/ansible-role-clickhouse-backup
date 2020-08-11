@@ -7,13 +7,13 @@ lint: |
 platforms:
   - name: ${MOLECULE_TEST_SCOPE:-default}-clickhouse
     server_type: cx11
-    image: ${MOLECULE_PLATFORM}
+    image: ${MOLECULE_PLATFORM-debian-10}
     groups:
       - clickhouse
       - clickhouse_data
   - name: ${MOLECULE_TEST_SCOPE:-default}-clickhouse-restore
     server_type: cx11
-    image: ${MOLECULE_PLATFORM}
+    image: ${MOLECULE_PLATFORM-debian-10}
     groups:
       - clickhouse
       - clickhouse_restore
