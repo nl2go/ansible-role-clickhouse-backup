@@ -20,7 +20,7 @@ None.
 
     - hosts: all
       roles:
-         - { role: nl2go.ansible-role-clickhouse-backup }
+         - { role: nl2go.clickhouse_backup }
 
 ## Development
 
