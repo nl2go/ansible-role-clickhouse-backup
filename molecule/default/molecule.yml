@@ -29,6 +29,9 @@ provisioner:
           - username: guest
             password: guest
         clickhouse_replica_id: single
+        clickhouse_timezone: Europe/Berlin
+        clickhouse_display_name: ${MOLECULE_TEST_SCOPE:-default}-{{ inventory_hostname }}
+        clickhouse_replication_port: 9009
         clickhouse_backup_version: 0.5.2
         clickhouse_backup_general_remote_storage: gcs
         clickhouse_backup_gcs_credentials_file: /etc/clickhouse-backup-gcs-credentials.json
