@@ -28,6 +28,7 @@ provisioner:
         clickhouse_kafka_client_users:
           - username: guest
             password: guest
+        clickhouse_replica_id: single
         clickhouse_backup_version: 0.5.2
         clickhouse_backup_general_remote_storage: gcs
         clickhouse_backup_gcs_credentials_file: /etc/clickhouse-backup-gcs-credentials.json
