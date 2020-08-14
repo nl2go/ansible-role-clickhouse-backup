@@ -3,7 +3,9 @@
   roles:
     - nl2go.clickhouse
   vars:
-    clickhouse_listen_host: "{{ ansible_default_ipv4.address }}"
+    clickhouse_interserver_http_host: "{{ ansible_default_ipv4.address }}"
+    clickhouse_listen_addresses:
+      - "{{ ansible_default_ipv4.address }}"
 
 - name: Install example dataset with prepared partitions on origin host
   hosts: clickhouse_data
