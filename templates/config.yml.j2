@@ -29,7 +29,7 @@ s3:
   disable_cert_verification: {{ clickhouse_backup_s3_disable_cert_verification }}
 gcs:
   credentials_file: {{ clickhouse_backup_gcs_credentials_file }}
-  credentials_json: {{ clickhouse_backup_gcs_credentials_json }}
+  credentials_json: '{{ clickhouse_backup_gcs_credentials_json }}'
   bucket: {{ clickhouse_backup_gcs_bucket }}
   path: {{ clickhouse_backup_gcs_path }}
   compression_level: {{ clickhouse_backup_gcs_compression_level }}
