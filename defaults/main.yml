@@ -66,8 +66,8 @@ clickhouse_backup_cos_compression_level: 1
 clickhouse_backup_cos_debug: false
 
 clickhouse_backup_install_crontab: true
-clickhouse_backup_cron_month: *
-clickhouse_backup_cron_day: *
-clickhouse_backup_cron_weekday: *
+clickhouse_backup_cron_month: "*"
+clickhouse_backup_cron_day: "*"
+clickhouse_backup_cron_weekday: "*"
 clickhouse_backup_cron_minute: 0
 clickhouse_backup_cron_hour: 2
