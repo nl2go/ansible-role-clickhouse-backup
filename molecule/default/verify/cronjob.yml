@@ -1,0 +1,16 @@
+---
+- name: Check that clickhouse-backup cronjob file is created
+  stat:
+    path: /etc/cron.d/clickhouse-backup
+  register: stat_cronjob_result
+  failed_when: not stat_cronjob_result.stat.exists
+
+- name: Run cronjob script
+  command: /usr/local/bin/cronjob-clickhouse-backup.sh
+  register: cronjob_script_result
+  run_once: yes
+
+- name: Verify cronjob script return code
+  assert:
+    that:
+      - cronjob_script_result.rc == 0

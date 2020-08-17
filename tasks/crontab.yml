@@ -1,0 +1,30 @@
+---
+- name: Create clickhouse-backup cronjob bash script
+  template:
+    src: cronjob-clickhouse-backup.sh.j2
+    dest: /usr/local/bin/cronjob-clickhouse-backup.sh
+    owner: root
+    group: root
+    mode: '0775'
+
+- name: Set default state for clickhouse-backup cron file
+  set_fact:
+    clickhouse_backup_crontab_state: absent
+
+- name: Overwrite state for clickhouse-backup cron file
+  set_fact:
+    clickhouse_backup_crontab_state: present
+  when: clickhouse_backup_install_crontab
+
+- name: Creates/remove cron file under /etc/cron.d
+  cron:
+    name: Add cronjob for clickhouse backup
+    month: "{{ clickhouse_backup_cron_month }}"
+    day: "{{ clickhouse_backup_cron_day }}"
+    weekday: "{{ clickhouse_backup_cron_weekday }}"
+    hour: "{{ clickhouse_backup_cron_hour }}"
+    minute: "{{ clickhouse_backup_cron_minute }}"
+    user: root
+    job: "/usr/local/bin/cronjob-clickhouse-backup.sh"
+    cron_file: clickhouse-backup
+    state: "{{ clickhouse_backup_crontab_state }}"

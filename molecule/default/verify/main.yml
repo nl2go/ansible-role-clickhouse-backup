@@ -20,3 +20,8 @@
   tasks:
     - include_tasks: restore.yml
     - include_tasks: dataset.yml
+
+- name: Verify clickhouse-backup cronjob
+  hosts: clickhouse
+  tasks:
+    - include_tasks: cronjob.yml
