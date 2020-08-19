@@ -21,6 +21,26 @@ None.
     - hosts: all
       roles:
          - { role: nl2go.clickhouse_backup }
+      vars:
+        clickhouse_backup_version: 0.5.2
+        clickhouse_backup_general_remote_storage: gcs
+        clickhouse_backup_gcs_credentials_json: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;production
+          1234xxx...
+        clickhouse_backup_gcs_bucket: clickhouse-backup-bucket
+        clickhouse_backup_gcs_path: "clickhouse"
+        clickhouse_backup_clickhouse_host: "{{ ansible_default_ipv4.address }}"
+        clickhouse_backup_clickhouse_password: 123SECURE
+
+### Install cronjob for executing backups
+
+The role contains tasks to automatically set up 3 cron jobs that execute the backup on a regular basis. The installation of these cron jobs can be controlled by setting the variable `clickhouse_backup_install_crontab` which defaults to `true`. The default configuration would set up daily, weekly and monthly backups. The number of backups to keep on the remote storage for each kind of backups can be controlled by the variables:
+
+    clickhouse_backup_general_backups_to_keep_remote_daily: 7
+    clickhouse_backup_general_backups_to_keep_remote_weekly: 4
+    clickhouse_backup_general_backups_to_keep_remote_monthly: 12
+
+The numbers given here are the default values.
 
 ## Development
 
