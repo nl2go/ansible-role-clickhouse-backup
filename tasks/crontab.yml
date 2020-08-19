@@ -2,10 +2,14 @@
 - name: Create clickhouse-backup cronjob bash script
   template:
     src: cronjob-clickhouse-backup.sh.j2
-    dest: /usr/local/bin/cronjob-clickhouse-backup.sh
+    dest: "/usr/local/bin/cronjob-clickhouse-backup-{{ item }}.sh"
     owner: root
     group: root
     mode: '0775'
+  loop:
+    - daily
+    - weekly
+    - monthly
 
 - name: Set default state for clickhouse-backup cron file
   set_fact:
@@ -19,12 +23,12 @@
 - name: Creates/remove cron file under /etc/cron.d
   cron:
     name: Add cronjob for clickhouse backup
-    month: "{{ clickhouse_backup_cron_month }}"
-    day: "{{ clickhouse_backup_cron_day }}"
-    weekday: "{{ clickhouse_backup_cron_weekday }}"
-    hour: "{{ clickhouse_backup_cron_hour }}"
-    minute: "{{ clickhouse_backup_cron_minute }}"
+    special_time: "{{ item }}"
     user: root
-    job: "/usr/local/bin/cronjob-clickhouse-backup.sh"
-    cron_file: clickhouse-backup
+    job: "/usr/local/bin/cronjob-clickhouse-backup-{{ item }}.sh"
+    cron_file: "clickhouse-backup-{{ item }}"
     state: "{{ clickhouse_backup_crontab_state }}"
+  loop:
+    - daily
+    - weekly
+    - monthly

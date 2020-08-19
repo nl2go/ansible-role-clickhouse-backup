@@ -1,16 +1,18 @@
 ---
 # clickhouse backup tool version to install
 clickhouse_backup_version: 0.5.2
-# clickhouse-backup config file location
-clickhouse_backup_config_file: /etc/clickhouse-backup/config.yml
+# clickhouse-backup config directory
+clickhouse_backup_config_dir: /etc/clickhouse-backup
 
 ####################################
 # General clickhouse-backup settings
 ####################################
 clickhouse_backup_general_remote_storage: s3
 clickhouse_backup_general_disable_progress_bar: false
-clickhouse_backup_general_backups_to_keep_local: 0
-clickhouse_backup_general_backups_to_keep_remote: 0
+clickhouse_backup_general_backups_to_keep_local: 1
+clickhouse_backup_general_backups_to_keep_remote_daily: 7
+clickhouse_backup_general_backups_to_keep_remote_weekly: 4
+clickhouse_backup_general_backups_to_keep_remote_monthly: 12
 
 ###############################################
 # Clickhouse related clickhouse-backup settings

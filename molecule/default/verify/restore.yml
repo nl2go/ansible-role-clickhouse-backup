@@ -3,10 +3,10 @@
     backup_name: "molecule_backup_{{ lookup('pipe','date -u +%Y-%m-%d') }}"
 
 - name: Download backup
-  shell: "clickhouse-backup download {{ backup_name }}"
+  shell: "clickhouse-backup  -c /etc/clickhouse-backup/config-daily.yml download {{ backup_name }}"
 
 - name: Restore backup
-  shell: "clickhouse-backup restore {{ backup_name }}"
+  shell: "clickhouse-backup  -c /etc/clickhouse-backup/config-daily.yml restore {{ backup_name }}"
   register: backup_restore
 
 - name: Verify backup restore return code

@@ -1,19 +1,12 @@
 #!/usr/bin/env bash
 
 backup_name=`date -u +%Y-%m-%d`
-yesterday_backup_name=`date --date=yesterday -u +%Y-%m-%d`
-current_day=`date -u +%d`
 
-echo "Create local backup..."
-clickhouse-backup create $backup_name
+echo "Create {{ item }} local backup..."
+clickhouse-backup -c {{ clickhouse_backup_config_dir }}/config-{{ item }}.yml create $backup_name-{{ item }}
 
-# Check for existence of yesterdays backup on local location, otherwise diff can't be done
-yesterday_backup_size=`clickhouse-backup list local | grep "$yesterday_backup_name" | wc -l`
+echo "Upload {{ item }} full backup..."
+clickhouse-backup -c {{ clickhouse_backup_config_dir }}/config-{{ item }}.yml upload $backup_name-{{ item }}
 
-if [ "$current_day" != "01" ] && [ "$yesterday_backup_size" -gt "0" ]; then
-    echo "Upload incremental backup..."
-    clickhouse-backup upload $backup_name --diff-from $yesterday_backup_name
-else
-    echo "Upload full backup..."
-    clickhouse-backup upload $backup_name
-fi
+echo "Delete {{ item }} local backup..."
+clickhouse-backup -c {{ clickhouse_backup_config_dir }}/config-{{ item }}.yml delete local $backup_name-{{ item }}

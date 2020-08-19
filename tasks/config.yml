@@ -2,7 +2,11 @@
 - name: Create clickhouse-backup configuration file
   template:
     src: config.yml.j2
-    dest: "{{ clickhouse_backup_config_file }}"
+    dest: "{{ clickhouse_backup_config_dir }}/config-{{ item }}.yml"
     owner: root
     group: root
     mode: '0664'
+  loop:
+    - daily
+    - weekly
+    - monthly

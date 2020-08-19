@@ -29,6 +29,10 @@
 
 - name: Check that clickhouse-backup config is created
   stat:
-    path: /etc/clickhouse-backup/config.yml
+    path: "/etc/clickhouse-backup/config-{{ item }}.yml"
   register: stat_config_result
   failed_when: not stat_config_result.stat.exists
+  loop:
+    - daily
+    - weekly
+    - monthly
