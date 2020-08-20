@@ -3,7 +3,7 @@
     backup_name: "molecule_backup_{{ lookup('pipe','date -u +%Y-%m-%d') }}"
 
 - name: Upload backup
-  shell: "clickhouse-backup upload {{ backup_name }}"
+  shell: "clickhouse-backup  -c /etc/clickhouse-backup/config-daily.yml upload {{ backup_name }}"
   register: backup_upload
 
 - name: Verify backup upload return code

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+backup_name=`date -u +%Y-%m-%d`
+
+echo "Create {{ item }} local backup..."
+clickhouse-backup -c {{ clickhouse_backup_config_dir }}/config-{{ item }}.yml create $backup_name-{{ item }}
+
+echo "Upload {{ item }} full backup..."
+clickhouse-backup -c {{ clickhouse_backup_config_dir }}/config-{{ item }}.yml upload $backup_name-{{ item }}
+
+echo "Delete {{ item }} local backup..."
+clickhouse-backup -c {{ clickhouse_backup_config_dir }}/config-{{ item }}.yml delete local $backup_name-{{ item }}

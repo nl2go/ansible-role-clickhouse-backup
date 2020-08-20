@@ -3,7 +3,7 @@
     backup_name: "molecule_backup_{{ lookup('pipe','date -u +%Y-%m-%d') }}"
 
 - name: Create new backup
-  shell: "clickhouse-backup create {{ backup_name }}"
+  shell: "clickhouse-backup -c /etc/clickhouse-backup/config-daily.yml create {{ backup_name }}"
   register: backup_out
 
 - name: Verify backup creation output
@@ -25,7 +25,7 @@
   failed_when: not backup_shadow_result.stat.exists
 
 - name: Check local backup list
-  shell: "clickhouse-backup list local"
+  shell: "clickhouse-backup -c /etc/clickhouse-backup/config-daily.yml list local"
   register: local_backup_list
 
 - name: Verify local backup list output

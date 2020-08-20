@@ -3,3 +3,5 @@
   tags: [clickhouse-backup, clickhouse-backup_install, install]
 - import_tasks: config.yml
   tags: [clickhouse-backup, clickhouse-backup_config, config]
+- import_tasks: crontab.yml
+  tags: [clickhouse-backup, clickhouse-backup_crontab, crontab]
