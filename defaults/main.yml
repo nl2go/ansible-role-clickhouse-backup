@@ -17,10 +17,11 @@ clickhouse_backup_general_backups_to_keep_remote_monthly: 12
 ###############################################
 # Clickhouse related clickhouse-backup settings
 ###############################################
-clickhouse_backup_clickhouse_username: default
-clickhouse_backup_clickhouse_password: ""
-clickhouse_backup_clickhouse_host: localhost
-clickhouse_backup_clickhouse_port: 9000
+clickhouse_backup_clickhouse_db_url: ""
+clickhouse_backup_clickhouse_username: "{{ clickhouse_backup_clickhouse_db_url | urlsplit('username') | default('default') }}"
+clickhouse_backup_clickhouse_password: "{{ clickhouse_backup_clickhouse_db_url | urlsplit('password') | default('') }}"
+clickhouse_backup_clickhouse_host: "{{ clickhouse_backup_clickhouse_db_url | urlsplit('hostname') | default('localhost') }}"
+clickhouse_backup_clickhouse_port: "{{ clickhouse_backup_clickhouse_db_url | urlsplit('port') | default('localhost') }}"
 clickhouse_backup_clickhouse_data_path: ""
 clickhouse_backup_clickhouse_skip_tables:
   - system.*
