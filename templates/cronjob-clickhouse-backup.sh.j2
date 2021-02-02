@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
-backup_name=`date -u +%Y-%m-%d`
+nodename=`hostname`
+backup_name=$nodename`date -u +%Y-%m-%d`
 
 echo "Create {{ item }} local backup..."
 clickhouse-backup -c {{ clickhouse_backup_config_dir }}/config-{{ item }}.yml create $backup_name-{{ item }}
