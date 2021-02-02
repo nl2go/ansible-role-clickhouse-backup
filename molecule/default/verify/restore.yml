@@ -1,6 +1,6 @@
 ---
 - set_fact:
-    backup_name: "molecule_backup_{{ lookup('pipe','hostname - date -u +%Y-%m-%d') }}"
+    backup_name: "molecule_backup_{{ ansible_host}}{{ lookup('pipe','hostname - date -u +%Y-%m-%d') }}"
 
 - name: Download backup
   shell: "clickhouse-backup  -c /etc/clickhouse-backup/config-daily.yml download {{ backup_name }}"
