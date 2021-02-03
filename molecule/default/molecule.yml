@@ -34,7 +34,7 @@ provisioner:
         clickhouse_replication_port: 9009
         clickhouse_zookeeper_credentials: bob:secret_password
         clickhouse_zookeeper_hosts: []
-        clickhouse_backup_version: 0.5.2
+        clickhouse_backup_version: 0.6.4
         clickhouse_backup_general_remote_storage: gcs
         clickhouse_backup_gcs_credentials_file: /etc/clickhouse-backup-gcs-credentials.json
         clickhouse_backup_gcs_bucket: sib-clickhouse-backup-ci
