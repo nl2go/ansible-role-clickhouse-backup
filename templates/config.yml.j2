@@ -31,7 +31,7 @@ gcs:
   credentials_file: {{ clickhouse_backup_gcs_credentials_file }}
   credentials_json: '{{ clickhouse_backup_gcs_credentials_json }}'
   bucket: {{ clickhouse_backup_gcs_bucket }}
-  path: {{ clickhouse_backup_gcs_path }}/{{ item }}
+  path: {{ clickhouse_backup_gcs_path }}/{{ item }}/{{ ansible_hostname }}
   compression_level: {{ clickhouse_backup_gcs_compression_level }}
   compression_format: {{ clickhouse_backup_gcs_compression_format }}
 cos:
