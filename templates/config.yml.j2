@@ -20,7 +20,7 @@ s3:
   region: {{ clickhouse_backup_s3_region }}
   acl: {{ clickhouse_backup_s3_acl }}
   force_path_style: {{ clickhouse_backup_s3_force_path_style }}
-  path: {{ clickhouse_backup_s3_path }}/{{ item }}
+  path: {{ clickhouse_backup_s3_path }}/{{ item }}/{{ ansible_hostname }}
   disable_ssl: {{ clickhouse_backup_s3_disable_ssl }}
   part_size: {{ clickhouse_backup_s3_part_size }}
   compression_level: {{ clickhouse_backup_s3_compression_level }}
