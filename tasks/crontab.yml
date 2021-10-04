@@ -51,5 +51,6 @@
     job: /usr/local/bin/remove-clickhouse-local-backups.sh
     cron_file: "remove-clickhouse-local-backup"
   when: clickhouse_backup_general_backups_to_keep_local == 0
-  
+  tags: backup_removal
+
   
