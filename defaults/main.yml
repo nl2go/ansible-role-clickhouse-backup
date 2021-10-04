@@ -9,7 +9,7 @@ clickhouse_backup_config_dir: /etc/clickhouse-backup
 ####################################
 clickhouse_backup_general_remote_storage: s3
 clickhouse_backup_general_disable_progress_bar: false
-clickhouse_backup_general_backups_to_keep_local: 1
+clickhouse_backup_general_backups_to_keep_local: 0
 clickhouse_backup_general_backups_to_keep_remote_daily: 7
 clickhouse_backup_general_backups_to_keep_remote_weekly: 4
 clickhouse_backup_general_backups_to_keep_remote_monthly: 12
