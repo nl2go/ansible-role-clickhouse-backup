@@ -15,8 +15,8 @@ env:
     - MOLECULE_PLATFORM: ubuntu-18.04
 
 before_script:
-  - wget https://raw.githubusercontent.com/nl2go/docker-molecule/3.0.4-n2g-1.0.0/docker-compose.yml
-  - docker-compose up -d
+#  - wget https://raw.githubusercontent.com/nl2go/docker-molecule/3.0.4-n2g-1.0.0/docker-compose.yml
+#  - docker-compose up -d
 
 script:
 #  - openssl aes-256-cbc -d -in molecule/resources/clickhouse-backup-gcs-credentials.json.enc -out molecule/resources/clickhouse-backup-gcs-credentials.json -md sha256 -k ${CI_FILE_SECRET} || travis_terminate 1
