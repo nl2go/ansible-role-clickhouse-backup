@@ -32,3 +32,22 @@
     - daily
     - weekly
     - monthly
+
+- name: copy local backup removal script
+  copy:
+    src: remove-clickhouse-local-backups.sh
+    dest: /usr/local/bin/
+    owner: root
+    group: root
+    mode: 775
+    force: yes
+  tags: backup_removal
+
+- name: Remove local backups via cron job
+  cron:
+    name: Add cronjob for remove local backups
+    hour: "12"
+    user: root
+    job: /usr/local/bin/remove-clickhouse-local-backups.sh
+    cron_file: "remove-clickhouse-local-backup
+  when: clickhouse_backup_general_backups_to_keep_local == "0"
