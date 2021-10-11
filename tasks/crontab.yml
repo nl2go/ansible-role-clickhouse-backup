@@ -20,18 +20,36 @@
     clickhouse_backup_crontab_state: present
   when: clickhouse_backup_install_crontab
 
-- name: Creates/remove cron file under /etc/cron.d
-  cron:
-    name: Add cronjob for clickhouse backup
-    special_time: "{{ item }}"
-    user: root
-    job: "/usr/local/bin/cronjob-clickhouse-backup-{{ item }}.sh"
-    cron_file: "clickhouse-backup-{{ item }}"
-    state: "{{ clickhouse_backup_crontab_state }}"
+- name: set default for set_fact
+  set_fact:
+    "{{ item }}_backup_status": present
+  when: clickhouse_backup_install_crontab
   loop:
     - daily
     - weekly
     - monthly
+
+- name: Overwrite state for clickhouse-backup-type in cron file
+  set_fact:
+    "{{ item }}_backup_status": absent
+  when: "clickhouse_backup_general_backups_to_keep_remote_{{ item }} == 0"
+  loop:
+    - daily
+    - weekly
+    - monthly
+
+- name: Creates/remove cron file under /etc/cron.d
+  cron:
+    name: Add cronjob for clickhouse backup
+    special_time: "{{ item.time }}"
+    user: root
+    job: "/usr/local/bin/cronjob-clickhouse-backup-{{ item.time }}.sh"
+    cron_file: "clickhouse-backup-{{ item.time }}"
+    state: "{{ item.clickhouse_backup_crontab_state }}"
+  loop:
+    - { time: 'daily' , clickhouse_backup_crontab_state: '{{ daily_backup_status }}' }
+    - { time: 'weekly' , clickhouse_backup_crontab_state: '{{ weekly_backup_status }}' }
+    - { time: 'monthly' , clickhouse_backup_crontab_state: '{{ monthly_backup_status }}' }
 
 - name: copy local backup removal script
   copy:
@@ -46,7 +64,7 @@
 - name: Remove local backups via cron job
   cron:
     name: Add cronjob for remove local backups
-    hour: "12"
+    hour: '{{ clickhouse_backup_local_removal_hour }}'
     user: root
     job: /usr/local/bin/remove-clickhouse-local-backups.sh
     cron_file: "remove-clickhouse-local-backup"
