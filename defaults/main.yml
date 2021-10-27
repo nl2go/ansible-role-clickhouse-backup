@@ -1,6 +1,6 @@
 ---
 # clickhouse backup tool version to install
-clickhouse_backup_version: 0.5.2
+clickhouse_backup_version: 1.0.0
 # clickhouse-backup config directory
 clickhouse_backup_config_dir: /etc/clickhouse-backup
 
