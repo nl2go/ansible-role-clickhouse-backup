@@ -32,7 +32,7 @@
 - name: Overwrite state for clickhouse-backup-type in cron file
   set_fact:
     "{{ item }}_backup_status": absent
-  when: "clickhouse_backup_general_backups_to_keep_remote_{{ item }} == 0"
+  when: "clickhouse_backup_{{ item }} == false"
   loop:
     - daily
     - weekly

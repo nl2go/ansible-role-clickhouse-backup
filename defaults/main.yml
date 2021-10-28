@@ -14,6 +14,10 @@ clickhouse_backup_general_backups_to_keep_remote_daily: 7
 clickhouse_backup_general_backups_to_keep_remote_weekly: 4
 clickhouse_backup_general_backups_to_keep_remote_monthly: 12
 clickhouse_backup_local_removal_hour: 15
+# Disable the backup if you need ( should be :false )
+clickhouse_backup_daily: true
+clickhouse_backup_weekly: true
+clickhouse_backup_monthly: true
 
 ###############################################
 # Clickhouse related clickhouse-backup settings
