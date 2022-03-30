@@ -1,12 +1,5 @@
 ---
-- name: Install release package | 1.0.0
+- name: Install release package
   apt:
     deb: https://github.com/AlexAkulov/clickhouse-backup/releases/download/v{{ clickhouse_backup_version }}/clickhouse-backup_{{ clickhouse_backup_version }}_amd64.deb
     force: yes
-  when: clickhouse_backup_version == '1.0.0'
-
-- name: Install release package | latest
-  apt:
-    deb: https://github.com/AlexAkulov/clickhouse-backup/releases/download/{{ clickhouse_backup_version }}/clickhouse-backup_{{ clickhouse_backup_version }}_amd64.deb
-    force: yes
-  when: clickhouse_backup_version != '1.0.0'
