@@ -4,3 +4,4 @@ for i in $(clickhouse-backup --config /etc/clickhouse-backup/config-daily.yml li
   do
      clickhouse-backup --config /etc/clickhouse-backup/config-daily.yml delete local $i ;
   done
+pkill -f clickhouse-backup;
