@@ -18,6 +18,7 @@ clickhouse_backup_local_removal_hour: 15
 clickhouse_backup_daily: true
 clickhouse_backup_weekly: true
 clickhouse_backup_monthly: true
+clickhouse_backup_general_upload_concurrency: 1
 
 ###############################################
 # Clickhouse related clickhouse-backup settings
@@ -60,6 +61,7 @@ clickhouse_backup_gcs_bucket: ""
 clickhouse_backup_gcs_path: ""
 clickhouse_backup_gcs_compression_level: 1
 clickhouse_backup_gcs_compression_format: gzip
+clickhouse_backup_gcs_max_upload_compression_buffer_size: 8G
 
 ##################################################################
 # clickhouse-backup settings related to Alibaba COS remote storage

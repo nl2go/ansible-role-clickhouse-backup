@@ -3,6 +3,7 @@ general:
   disable_progress_bar: {{ clickhouse_backup_general_disable_progress_bar }}
   backups_to_keep_local: {{ clickhouse_backup_general_backups_to_keep_local }}
   backups_to_keep_remote: {{ lookup('vars', 'clickhouse_backup_general_backups_to_keep_remote_' + item) }}
+  upload_concurrency: {{ clickhouse_backup_general_upload_concurrency }}
 clickhouse:
   username: {{ clickhouse_backup_clickhouse_username }}
   password: {{ clickhouse_backup_clickhouse_password }}
@@ -34,6 +35,7 @@ gcs:
   path: {{ clickhouse_backup_gcs_path }}/{{ item }}/{{ ansible_hostname }}
   compression_level: {{ clickhouse_backup_gcs_compression_level }}
   compression_format: {{ clickhouse_backup_gcs_compression_format }}
+  max_upload_compression_buffer_size: {{ clickhouse_backup_gcs_max_upload_compression_buffer_size }}
 cos:
   url: {{ clickhouse_backup_cos_url }}
   timeout: {{ clickhouse_backup_cos_timeout }}
